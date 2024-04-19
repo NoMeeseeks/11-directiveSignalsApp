@@ -9,7 +9,7 @@ export class ProductPageComponent {
 
   private _formbuilder = inject(FormBuilder);
 
-  public color: string = 'red';
+  public color: string = 'blue';
 
   public formulario: FormGroup = this._formbuilder.group({
     name: ['', [Validators.required, Validators.minLength(6), Validators.email]]
