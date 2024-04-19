@@ -9,7 +9,8 @@
         </div>
 
         <div class="col-span-2">
-            <span class="font-mono" customLabel [color]="color"></span>
+            <span class="font-mono" customLabel [color]="color" [errores]="formulario.get('name')?.errors">
+                temporal</span>
         </div>
     </div>
     <div class="grid grid-cols-3">
