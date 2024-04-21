@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignalsComponent } from './signals.component';
-import { SignalsLayoutComponent } from './interfaces/signalsLayout/signalsLayout.component';
+import { SignalsLayoutComponent } from './layout/signalsLayout/signalsLayout.component';
+import { CounterPageComponent } from './pages/counter-page/counter-page.component';
+import { UserInfoPageComponent } from './pages/user-info-page/user-info-page.component';
+import { PropertiesPageComponent } from './pages/properties-page/properties-page.component';
 
 const routes: Routes = [
   {
     path: '',
     component: SignalsLayoutComponent,
-    // children: [
-    //   { path: '', }
-    // ]
+    children: [
+      { path: 'counter', component: CounterPageComponent },
+      { path: 'user-info', component: UserInfoPageComponent },
+      { path: 'properties', component: PropertiesPageComponent },
+      { path: '**', redirectTo: 'counter' }
+    ]
   }
 ];
 
