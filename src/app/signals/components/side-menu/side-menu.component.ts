@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
-interface menuItems {
+interface MenuItems {
   titulo: string;
   ruta: string;
 }
@@ -14,19 +14,39 @@ interface menuItems {
 })
 export class SideMenuComponent {
 
-  public menuItems: menuItems[] = [
-    {
-      titulo: 'Contador',
-      ruta: 'counter'
-    },
-    {
-      titulo: 'Usuario',
-      ruta: 'user-info'
-    },
-    {
-      titulo: 'Cambios',
-      ruta: 'properties'
-    },
-  ]
+  public menuItems = signal<MenuItems[]>(
+    [
+      {
+        titulo: 'Contador',
+        ruta: 'counter'
+      },
+      {
+        titulo: 'Usuario',
+        ruta: 'user-info'
+      },
+      {
+        titulo: 'Cambios',
+        ruta: 'properties'
+      },
+    ]
+  )
+
+
+  //manera tradicional
+  // public menuItems: menuItems[] = [
+  //   {
+  //     titulo: 'Contador',
+  //     ruta: 'counter'
+  //   },
+  //   {
+  //     titulo: 'Usuario',
+  //     ruta: 'user-info'
+  //   },
+  //   {
+  //     titulo: 'Cambios',
+  //     ruta: 'properties'
+  //   },
+  // ]
+
 
 }
