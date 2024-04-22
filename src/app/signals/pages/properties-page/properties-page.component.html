@@ -1,1 +1,24 @@
-<p>properties-page works!</p>
+<h1>Mutaciones</h1>
+<hr>
+
+<div>
+    <div class="grid grid-rows-1">
+        <div class="grid-cols-6">
+            <input type="text" class="mb-2 p-2 border-black border-2 rounded-lg " #txtEmail
+                (input)="onFieldUpdated('email',txtEmail.value)">
+
+            <input type="text" class="mb-2 p-2 border-black border-2 rounded-lg " #txtFirstName
+                (input)="onFieldUpdated('frist_Name',txtFirstName.value)">
+
+            <input type="text" class="mb-2 p-2 border-black border-2 rounded-lg " #txtLastName
+                (input)="onFieldUpdated('last_name',txtLastName.value)">
+
+        </div>
+        <div class="grid-cols-6">
+
+            <pre>
+                {{ usuario() | json}}
+            </pre>
+        </div>
+    </div>
+</div>

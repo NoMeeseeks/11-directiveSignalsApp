@@ -39,7 +39,8 @@ export class UserInfoPageComponent implements OnInit {
             this.usuarioActual.set(value);
             this.usuarioEncontrado.set(true);
           },
-          error: () => {
+          error: (valor) => {
+            console.log(valor)
             this.usuarioActual.set(undefined);
             this.usuarioEncontrado.set(false);
           }
