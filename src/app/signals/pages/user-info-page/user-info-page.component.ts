@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { UsersServiceService } from '../../services/users-service.service';
 import { User } from '../../interfaces/user-request.interface';
 
@@ -14,6 +14,11 @@ export class UserInfoPageComponent implements OnInit {
   public idUsuario = signal(1);
   public usuarioActual = signal<User | undefined>(undefined);
   public usuarioEncontrado = signal(true);
+  public nombreCompleto = computed<string>(() => {
+    if (!this.usuarioActual()) { return 'usuario no encontrado' }
+
+    return `${this.usuarioActual()?.first_name} ${this.usuarioActual()?.last_name}`
+  })
 
   ngOnInit(): void {
     this.cargarUsuario(this.idUsuario());
@@ -27,9 +32,19 @@ export class UserInfoPageComponent implements OnInit {
     this.idUsuario.set(id);
 
     this._userService.obtenerUsuarioPorId(id)
-      .subscribe(usuario => {
-        this.usuarioActual.set(usuario);
-      })
+      .subscribe(
+        //regresaremos un objeto
+        {
+          next: (value) => {
+            this.usuarioActual.set(value);
+            this.usuarioEncontrado.set(true);
+          },
+          error: () => {
+            this.usuarioActual.set(undefined);
+            this.usuarioEncontrado.set(false);
+          }
+        }
+      )
 
   }
 }
