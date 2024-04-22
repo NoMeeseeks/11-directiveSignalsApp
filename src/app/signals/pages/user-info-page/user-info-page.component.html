@@ -5,11 +5,11 @@
     <div class="grid grid-rows-3">
         <!-- Informacion del usuario -->
         <div class="grid-cols-1">
-            <img src="..." alt="Avatar">
+            <img [src]=" usuarioActual()?.avatar" alt="Avatar">
 
-            <h2>Usuario: </h2>
-            <p>Correo: </p>
-            <p>Nombre: </p>
+            <h2>Usuario: {{ usuarioActual()?.id }} </h2>
+            <p>Correo: {{ usuarioActual()?.email }}</p>
+            <p>Nombre: {{ usuarioActual()?.first_name }}</p>
         </div>
         <!-- Muestra un error en caso de no encontrar ningun usaurio con ese valor -->
         <div class="grid grid-cols-1">
@@ -20,10 +20,14 @@
             <h2 class="font-bold text-2xl mt-1 mb-2">Usuario</h2>
             <hr>
 
-            <button class="p-3 rounded-md text-center font-bold text-white bg-blue-400"> Anterior
+            <button (click)="cargarUsuario(idUsuario() -1)"
+                class="p-3 rounded-md text-center font-bold text-white bg-blue-400">
+                Anterior
             </button>
             &nbsp;
-            <button class="p-3 rounded-md text-center font-bold text-white bg-blue-400"> Siguiente </button>
+            <button (click)="cargarUsuario(idUsuario() +1)"
+                class="p-3 rounded-md text-center font-bold text-white bg-blue-400">
+                Siguiente </button>
         </div>
 
     </div>
