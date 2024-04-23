@@ -5,19 +5,22 @@
     <div class="grid grid-rows-1">
         <div class="grid-cols-6">
             <input type="text" class="mb-2 p-2 border-black border-2 rounded-lg " #txtEmail
-                (input)="onFieldUpdated('email',txtEmail.value)">
+                (input)="onFieldUpdated('email',txtEmail.value)" [value]="usuario().email">
 
             <input type="text" class="mb-2 p-2 border-black border-2 rounded-lg " #txtFirstName
-                (input)="onFieldUpdated('frist_Name',txtFirstName.value)">
+                (input)="onFieldUpdated('first_name',txtFirstName.value)" [value]="usuario().first_name">
 
             <input type="text" class="mb-2 p-2 border-black border-2 rounded-lg " #txtLastName
-                (input)="onFieldUpdated('last_name',txtLastName.value)">
+                (input)="onFieldUpdated('last_name',txtLastName.value)" [value]="usuario().last_name">
 
         </div>
         <div class="grid-cols-6">
 
             <pre>
                 {{ usuario() | json}}
+            </pre>
+            <pre>
+                {{ nombreCompleto() }}
             </pre>
         </div>
     </div>
