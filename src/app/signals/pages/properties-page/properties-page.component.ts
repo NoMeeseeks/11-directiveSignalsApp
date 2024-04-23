@@ -1,11 +1,13 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, OnDestroy, computed, effect, signal } from '@angular/core';
 import { User } from '../../interfaces/user-request.interface';
 
 @Component({
   templateUrl: './properties-page.component.html',
   styleUrl: './properties-page.component.css'
 })
-export class PropertiesPageComponent {
+export class PropertiesPageComponent implements OnDestroy {
+
+  public contador = signal(10);
 
   public usuario = signal<User>({
     id: 1,
@@ -15,6 +17,17 @@ export class PropertiesPageComponent {
     avatar: 'https://regres.in/img/faces/1-image.jpg',
   });
   public nombreCompleto = computed(() => { `${this.usuario().first_name} ${this.usuario().last_name}` })
+
+  // es una propiedad computada
+  public usuarioEfecto = effect(() => {
+    console.log(`${this.usuario().first_name}-${this.contador()}`);
+
+  });
+
+
+  ngOnDestroy(): void {
+    this.usuarioEfecto.destroy();
+  }
 
   onFieldUpdated(campo: keyof User, valor: string) {
     // this.usuario.set({
@@ -45,5 +58,8 @@ export class PropertiesPageComponent {
       return valorActual
     })
 
+  }
+  incrementarPor(valor: number) {
+    this.contador.update(valorActual => valorActual + valor);
   }
 }
