@@ -1,23 +1,11 @@
 <div>
-    <h1>Informacion del usuario</h1>
+    <h1 class="text-4xl text-center font-sans">Informacion del usuario</h1>
 </div>
 <div>
     <div class="grid grid-rows-3">
-        <!-- Informacion del usuario -->
-        <div class="grid-cols-1">
-            <img [src]=" usuarioActual()?.avatar" alt="Avatar">
-
-            <h2>Usuario: {{ nombreCompleto() }} </h2>
-            <p>Correo: {{ usuarioActual()?.email }}</p>
-            <p>Nombre: {{ usuarioActual()?.first_name }}</p>
-        </div>
-        <!-- Muestra un error en caso de no encontrar ningun usaurio con ese valor -->
-        <div class="grid grid-cols-1" *ngIf="!usuarioEncontrado()">
-            <h3 class="text-center font-sans">Usuario no encontrado</h3>
-        </div>
         <!-- Botones pare ver otros usuarios o volver al usuario anterior -->
-        <div class="grid-cols-1">
-            <h2 class="font-bold text-2xl mt-1 mb-2">Usuario</h2>
+        <div class="grid-cols-1 text-center">
+            <h2 class="font-bold text-2xl mt-1 mb-2 text-center">Usuario</h2>
             <hr>
 
             <button (click)="cargarUsuario(idUsuario() -1)"
@@ -28,6 +16,18 @@
             <button (click)="cargarUsuario(idUsuario() +1)"
                 class="p-3 rounded-md text-center font-bold text-white bg-blue-400">
                 Siguiente </button>
+        </div>
+        <!-- Informacion del usuario -->
+        <div class="grid-cols-1 text-center items-center" *ngIf="usuarioEncontrado()">
+            <img class="rounded-full" [src]=" usuarioActual()?.avatar" alt="Avatar">
+
+            <h2 class="font-sans">Usuario: {{ nombreCompleto() }} </h2>
+            <p>Correo: {{ usuarioActual()?.email }}</p>
+            <p>Nombre: {{ usuarioActual()?.first_name }}</p>
+        </div>
+        <!-- Muestra un error en caso de no encontrar ningun usaurio con ese valor -->
+        <div class="grid grid-cols-1" *ngIf="!usuarioEncontrado()">
+            <h3 class="text-center font-sans text-4xl text-red-500 font-bold">Usuario no encontrado</h3>
         </div>
 
     </div>

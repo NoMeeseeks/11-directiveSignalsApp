@@ -1,15 +1,14 @@
-<h1>Mutaciones</h1>
+<h1 class="text-center text-3xl pb-2">Mutaciones</h1>
 <hr>
-
 <div>
     <div class="grid grid-rows-1">
-        <div class="grid-cols-6">
+        <div class="grid-cols-6 text-center">
             <input type="text" class="mb-2 p-2 border-black border-2 rounded-lg " #txtEmail
                 (input)="onFieldUpdated('email',txtEmail.value)" [value]="usuario().email">
-
+            <br>
             <input type="text" class="mb-2 p-2 border-black border-2 rounded-lg " #txtFirstName
                 (input)="onFieldUpdated('first_name',txtFirstName.value)" [value]="usuario().first_name">
-
+            <br>
             <input type="text" class="mb-2 p-2 border-black border-2 rounded-lg " #txtLastName
                 (input)="onFieldUpdated('last_name',txtLastName.value)" [value]="usuario().last_name">
 
